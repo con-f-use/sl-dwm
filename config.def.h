@@ -12,9 +12,15 @@ static const unsigned int snap      = 32;       /* snap pixel */
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=10", "JoyPixels:pixelsize=10:antialias=true:autohint=true" }; // nix-env -i joypixels
+static const char *fonts[]          = { 
+    //"monospace:size=10",
+    "Mononoki Nerd Font:size=9:antialias=true:autohint=true",
+    //"fontawesome:size=9:antialias=true",
+    "Hack:size=8:antialias=true:autohint=true",
+    "JoyPixels:pixelsize=10:antialias=true:autohint=true"
+}; // nix-env -i joypixels mononoki hack-font nerd-fonts
 static const char dmenufont[]       = "monospace:size=10";
-static const unsigned int baralpha = 0xa0;
+static const unsigned int baralpha = 0x70;
 static const unsigned int borderalpha = OPAQUE;
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
@@ -23,9 +29,11 @@ static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#005577";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+	[SchemeNorm]  = { col_gray3, col_gray1, col_gray2 },
+	[SchemeSel]   = { col_gray4, col_cyan,  col_cyan  },
+	[SchemeTitle] = { col_gray4, col_gray1,  col_cyan  },
 };
+
 static const unsigned int alphas[][3]      = {
 	/*               fg      bg        border     */
 	[SchemeNorm] = { OPAQUE, baralpha, borderalpha },
@@ -33,7 +41,9 @@ static const unsigned int alphas[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+//static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+//static const char *tags[] = { "", "", "", "", "", "", "", "", "" };
+static const char *tags[] = { "🐧", "", "📰", "📧", "🔍", "💀", "👷", "🕹", "📺" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -80,6 +90,7 @@ static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ ControlMask|Mod1Mask,         XK_t,      spawn,          {.v = termcmd } },
+	{ ControlMask|Mod1Mask,         XK_f,      spawn,          SHCMD("qutebrowser") },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY|ShiftMask,             XK_j,      rotatestack,    {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_k,      rotatestack,    {.i = -1 } },
