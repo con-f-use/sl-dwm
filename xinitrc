@@ -54,8 +54,5 @@ picom -f &
 nitrogen --restore &
 while true; do
     $HOME/suckless/dwm/result/bin/dwm &> /dev/null
-done &
-while true; do
-    echo "Dwmblocks!" 
-    $HOME/suckless/lukeblocks/result/bin/dwmblocks &> /dev/null
 done
+#$HOME/suckless/lukeblocks/result/bin/dwmblocks &> /dev/null
